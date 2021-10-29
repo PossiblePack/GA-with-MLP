@@ -40,6 +40,7 @@ def crossover(parents, offspring_size):
     offspring = numpy.empty(offspring_size)
     # The point at which crossover takes place between two parents. Usually, it is at the center.
     crossover_point = numpy.uint32(offspring_size[1]/2)
+
     for k in range(offspring_size[0]):
         # Index of the first parent to mate.
         parent1_idx = k%parents.shape[0]
@@ -50,7 +51,6 @@ def crossover(parents, offspring_size):
         # The new offspring will have its second half of its genes taken from the second parent.
         offspring[k, crossover_point:] = parents[parent2_idx, crossover_point:]
     return offspring
-
 
 def mutation(offspring_crossover, mutation_percent):
     num_mutations = numpy.uint32((mutation_percent*offspring_crossover.shape[1])/100)
